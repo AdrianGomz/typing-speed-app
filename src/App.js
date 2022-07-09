@@ -6,12 +6,12 @@ const quote =
 function App() {
   const [text, setText] = useState("");
   const [wrongIndexes, setWrongIdexes] = useState([true]);
-  const handleTyping = (e) => {
+  const handleTyping = async (e) => {
     // Handle delete
     if (e.target.value.length < text.length) {
       setText(e.target.value);
-      setCurrentChar(text.length - 1);
-      setWrongIdexes(wrongIndexes.slice(0, currentChar));
+      setCurrentChar(e.target.value.length);
+      setWrongIdexes(wrongIndexes.slice(0, e.target.value.length + 1));
       return;
     }
 
@@ -35,7 +35,6 @@ function App() {
     return null;
   };
   const [currentChar, setCurrentChar] = useState(0);
-
   return (
     <div className="App">
       <div className="Quote">
