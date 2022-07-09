@@ -1,0 +1,19 @@
+.Quote {
+    border: solid;
+    border-radius: 10px;
+    padding: 10px;
+    height: 200px;
+}
+
+.TypingText {
+    width: 60%;
+    margin: 0px 20px;
+}
+
+.current {
+    background-color: greenyellow;
+}
+
+.wrong {
+    background-color: salmon;
+}

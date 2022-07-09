@@ -1,15 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  padding:30px 10px;
 }
 
-.Quote{
-  border: solid;
-  border-radius: 10px;
-  padding: 10px;
-}
-.current{
-  background-color: greenyellow;
-}
-.wrong{
-  background-color: salmon;
-}
+
