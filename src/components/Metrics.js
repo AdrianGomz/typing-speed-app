@@ -1,8 +1,14 @@
 import "./Metrics.css";
 import { useState, useEffect } from "react";
 
-const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
-  const [seconds, setSeconds] = useState(0);
+const Metrics = ({
+  quoteWords,
+  text,
+  running,
+  wrongTypedChar,
+  seconds,
+  setSeconds,
+}) => {
   let typedWords = text.split(" ").length - 1;
 
   let wpm = running
@@ -22,7 +28,7 @@ const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [running]);
+  }, [running, setSeconds]);
   return (
     <div>
       <div className="metrics">
@@ -32,7 +38,6 @@ const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
         <div className="metrics-label">Accuracy</div>
         <div className="accuracy metrics-data">{accuracy}%</div>
       </div>
-      <button onClick={() => setRunning(true)}>start</button>
     </div>
   );
 };

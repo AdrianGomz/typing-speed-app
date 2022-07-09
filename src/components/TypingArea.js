@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./TypingArea.css";
 const TypingArea = ({
   quote,
@@ -7,9 +7,11 @@ const TypingArea = ({
   running,
   setRunning,
   setWrongTypedChar,
+  setSeconds,
 }) => {
   const [wrongIndexes, setWrongIdexes] = useState([true]);
   const [currentChar, setCurrentChar] = useState(0);
+  const ref = useRef(null);
 
   const handleTyping = (e) => {
     if (!running && e.target.value.length === 1) {
@@ -40,6 +42,16 @@ const TypingArea = ({
     setCurrentChar(e.target.value.length);
   };
 
+  const handleStart = async () => {
+    setText("");
+    setSeconds(0);
+    setWrongTypedChar(0);
+    setWrongIdexes([true]);
+    await setCurrentChar(0);
+    await setRunning(true);
+    ref.current.focus();
+  };
+
   // get color of each character
   const getColor = (i) => {
     // note: wrongIndexes starts as [true] in order to get the wrong typed characters easier, thats why we use i+1
@@ -62,12 +74,16 @@ const TypingArea = ({
           );
         })}
       </div>
-      <input
-        type="text"
-        value={text}
-        onChange={handleTyping}
-        className="TypingInput"
-      />
+      {running ? (
+        <input
+          ref={ref}
+          type="text"
+          value={text}
+          onChange={handleTyping}
+          className="TypingInput"
+        />
+      ) : null}
+      <button onClick={handleStart}>start</button>
     </div>
   );
 };
