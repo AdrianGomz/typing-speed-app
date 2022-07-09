@@ -5,19 +5,45 @@ const quote =
 
 function App() {
   const [text, setText] = useState("");
+  const [wrongIndexes, setWrongIdexes] = useState([true]);
   const handleTyping = (e) => {
+    // Handle delete
+    if (e.target.value.length < text.length) {
+      setText(e.target.value);
+      setCurrentChar(text.length - 1);
+      setWrongIdexes(wrongIndexes.slice(0, currentChar));
+      return;
+    }
+
     setText(e.target.value);
-    setCurrentWord(e.target.value.split(" ").length - 1);
+    if (
+      e.target.value.charAt(currentChar) === quote.charAt(currentChar) &&
+      wrongIndexes[wrongIndexes.length - 1]
+    ) {
+      setWrongIdexes((prevIndexes) => [...prevIndexes, true]);
+    } else {
+      setWrongIdexes((prevIndexes) => [...prevIndexes, false]);
+    }
+    setCurrentChar(text.split("").length + 1);
   };
-  const [currentWord, setCurrentWord] = useState(0);
+  const getColor = (i) => {
+    if (wrongIndexes[i + 1] === false) {
+      return "wrong";
+    } else if (currentChar === i && wrongIndexes[i] !== false) {
+      return "current";
+    }
+    return null;
+  };
+  const [currentChar, setCurrentChar] = useState(0);
 
   return (
     <div className="App">
       <div className="Quote">
-        {quote.split(" ").map((word, i) => {
+        {quote.split("").map((word, i) => {
           return (
-            <span key={i} className={currentWord === i ? "current" : null}>
-              {word}{" "}
+            <span key={i} className={getColor(i)}>
+              {word}
+              {""}
             </span>
           );
         })}
@@ -26,6 +52,7 @@ function App() {
         type="text"
         value={text}
         onChange={handleTyping}
+        // onKeyUp={handleDelete}
         className="TypingInput"
       />
     </div>
