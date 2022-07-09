@@ -1,6 +1,13 @@
 import { useState } from "react";
 import "./TypingArea.css";
-const TypingArea = ({ quote, text, setText, running, setRunning }) => {
+const TypingArea = ({
+  quote,
+  text,
+  setText,
+  running,
+  setRunning,
+  setWrongTypedChar,
+}) => {
   const [wrongIndexes, setWrongIdexes] = useState([true]);
   const [currentChar, setCurrentChar] = useState(0);
 
@@ -26,6 +33,7 @@ const TypingArea = ({ quote, text, setText, running, setRunning }) => {
     ) {
       setWrongIdexes((prevIndexes) => [...prevIndexes, true]);
     } else {
+      setWrongTypedChar((prev) => prev + 1);
       setWrongIdexes((prevIndexes) => [...prevIndexes, false]);
     }
     // Actualzing index of the next character we need to type

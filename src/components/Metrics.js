@@ -1,12 +1,15 @@
 import "./Metrics.css";
 import { useState, useEffect } from "react";
 
-const Metrics = ({ quoteWords, typedWords, setRunning, running }) => {
+const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
   const [seconds, setSeconds] = useState(0);
+  let typedWords = text.split(" ").length - 1;
+
   let wpm = running
     ? ((typedWords / seconds) * 60).toFixed(2)
     : ((quoteWords / seconds) * 60).toFixed(2);
-  const accuracy = 93;
+  const accuracy =
+    ((text.length / (wrongTypedChar + text.length)) * 100).toFixed(2) || 0;
 
   useEffect(() => {
     let interval;

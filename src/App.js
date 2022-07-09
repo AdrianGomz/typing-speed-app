@@ -8,6 +8,7 @@ const quote =
 function App() {
   const [text, setText] = useState("");
   const [running, setRunning] = useState(false);
+  const [wrongTypedChar, setWrongTypedChar] = useState(0);
   return (
     <div className="App">
       <TypingArea
@@ -16,12 +17,15 @@ function App() {
         setText={setText}
         setRunning={setRunning}
         running={running}
+        setWrongTypedChar={setWrongTypedChar}
       />
       <Metrics
         quoteWords={quote.split(" ").length}
+        text={text}
         typedWords={text.split(" ").length - 1}
         setRunning={setRunning}
         running={running}
+        wrongTypedChar={wrongTypedChar}
       />
     </div>
   );
