@@ -1,6 +1,17 @@
 .metrics {
     width: 200px;
-    height: 10em;
+    height: 12em;
     border: solid;
     border-radius: 10px;
+}
+.metrics-data{
+    font-size: 1.3rem;
+    background-color: #82b74b;
+    padding: 5px;
+    color:aliceblue;
+    margin: 10px 10px;
+}
+.metrics-label{
+    margin-top: 10px;
+    font-size: 1.2rem;
 }

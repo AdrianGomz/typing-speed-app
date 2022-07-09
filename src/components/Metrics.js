@@ -7,9 +7,10 @@ const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
 
   let wpm = running
     ? ((typedWords / seconds) * 60).toFixed(2)
-    : ((quoteWords / seconds) * 60).toFixed(2);
-  const accuracy =
-    ((text.length / (wrongTypedChar + text.length)) * 100).toFixed(2) || 0;
+    : (seconds !== 0 ? (quoteWords / seconds) * 60 : 0).toFixed(2);
+  const accuracy = (
+    (text.length / (wrongTypedChar + text.length)) * 100 || 0
+  ).toFixed(2);
 
   useEffect(() => {
     let interval;
@@ -25,8 +26,10 @@ const Metrics = ({ quoteWords, text, setRunning, running, wrongTypedChar }) => {
   return (
     <div>
       <div className="metrics">
+        <div className="metrics-label">Speed</div>
         <div className="wpm metrics-data">{wpm} WPM</div>
 
+        <div className="metrics-label">Accuracy</div>
         <div className="accuracy metrics-data">{accuracy}%</div>
       </div>
       <button onClick={() => setRunning(true)}>start</button>

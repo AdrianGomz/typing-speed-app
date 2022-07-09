@@ -2,6 +2,7 @@ import "./App.css";
 import TypingArea from "./components/TypingArea";
 import { useState } from "react";
 import Metrics from "./components/Metrics";
+import Navbar from "./components/Navbar";
 const quote =
   "She believed, and was entitled to believe, I must say, that all human beings were evil by nature, whether tormentors or victims, or idle standers-by. They could only create meaningless tragedies, she said, since they weren't nearly intelligent enough to accomplish all the good they were meant to do.";
 
@@ -11,22 +12,25 @@ function App() {
   const [wrongTypedChar, setWrongTypedChar] = useState(0);
   return (
     <div className="App">
-      <TypingArea
-        quote={quote}
-        text={text}
-        setText={setText}
-        setRunning={setRunning}
-        running={running}
-        setWrongTypedChar={setWrongTypedChar}
-      />
-      <Metrics
-        quoteWords={quote.split(" ").length}
-        text={text}
-        typedWords={text.split(" ").length - 1}
-        setRunning={setRunning}
-        running={running}
-        wrongTypedChar={wrongTypedChar}
-      />
+      <Navbar />
+      <div className="body">
+        <TypingArea
+          quote={quote}
+          text={text}
+          setText={setText}
+          setRunning={setRunning}
+          running={running}
+          setWrongTypedChar={setWrongTypedChar}
+        />
+        <Metrics
+          quoteWords={quote.split(" ").length}
+          text={text}
+          typedWords={text.split(" ").length - 1}
+          setRunning={setRunning}
+          running={running}
+          wrongTypedChar={wrongTypedChar}
+        />
+      </div>
     </div>
   );
 }
