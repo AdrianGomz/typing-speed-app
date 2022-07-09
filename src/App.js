@@ -6,16 +6,17 @@ const quote =
 function App() {
   const [text, setText] = useState("");
   const [wrongIndexes, setWrongIdexes] = useState([true]);
-  const handleTyping = async (e) => {
+  const [currentChar, setCurrentChar] = useState(0);
+
+  const handleTyping = (e) => {
+    setText(e.target.value);
     // Handle delete
     if (e.target.value.length < text.length) {
-      setText(e.target.value);
       setCurrentChar(e.target.value.length);
       setWrongIdexes(wrongIndexes.slice(0, e.target.value.length + 1));
       return;
     }
-
-    setText(e.target.value);
+    // if current character is correct and the previous character also was correct add true else false
     if (
       e.target.value.charAt(currentChar) === quote.charAt(currentChar) &&
       wrongIndexes[wrongIndexes.length - 1]
@@ -24,9 +25,12 @@ function App() {
     } else {
       setWrongIdexes((prevIndexes) => [...prevIndexes, false]);
     }
-    setCurrentChar(text.split("").length + 1);
+    // Actualzing index of the next character we need to type
+    setCurrentChar(e.target.value.length);
   };
+  // get color of each character
   const getColor = (i) => {
+    // note: wrongIndexes starts as [true] in order to get the wrong typed characters easier, thats why we use i+1
     if (wrongIndexes[i + 1] === false) {
       return "wrong";
     } else if (currentChar === i && wrongIndexes[i] !== false) {
@@ -34,7 +38,7 @@ function App() {
     }
     return null;
   };
-  const [currentChar, setCurrentChar] = useState(0);
+
   return (
     <div className="App">
       <div className="Quote">
@@ -51,7 +55,6 @@ function App() {
         type="text"
         value={text}
         onChange={handleTyping}
-        // onKeyUp={handleDelete}
         className="TypingInput"
       />
     </div>
