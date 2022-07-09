@@ -1,11 +1,16 @@
 import { useState } from "react";
 import "./TypingArea.css";
-const TypingArea = ({ quote }) => {
-  const [text, setText] = useState("");
+const TypingArea = ({ quote, text, setText, running, setRunning }) => {
   const [wrongIndexes, setWrongIdexes] = useState([true]);
   const [currentChar, setCurrentChar] = useState(0);
 
   const handleTyping = (e) => {
+    if (!running && e.target.value.length === 1) {
+      setRunning(true);
+    }
+    if (e.target.value.length === quote.length && e.target.value === quote) {
+      setRunning(false);
+    }
     setText(e.target.value);
     // Handle delete
     if (e.target.value.length < text.length) {
