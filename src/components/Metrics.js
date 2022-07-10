@@ -1,5 +1,5 @@
 import "./Metrics.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const Metrics = ({
   quoteWords,

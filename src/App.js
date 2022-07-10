@@ -3,8 +3,6 @@ import TypingArea from "./components/TypingArea";
 import { useEffect, useState } from "react";
 import Metrics from "./components/Metrics";
 import Navbar from "./components/Navbar";
-const quote =
-  "She believed, and was entitled to believe, I must say, that all human beings were evil by nature";
 
 function App() {
   const [quote, setQuote] = useState("Press on start . . .");
