@@ -1,8 +1,27 @@
 .App {
   text-align: center;
+  align-items: center;
 }
 .body{
   display: flex;
-  margin:60px 20px ;
+  margin:5px 20px ;
   justify-content: center;
+
+}
+.title{
+  height: 50px;
+  margin-top: 40px;
+  padding-bottom: 0;
+  width: 60%;
+}
+.header{
+  justify-content: center;
+  display: flex;
+}
+.typing-area-header{
+  width: 60%;
+}
+.metrics-header{
+  width: 200px;
+  height: 20px;
 }
