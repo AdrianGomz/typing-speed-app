@@ -1,16 +1,27 @@
 import "./App.css";
 import TypingArea from "./components/TypingArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Metrics from "./components/Metrics";
 import Navbar from "./components/Navbar";
 const quote =
   "She believed, and was entitled to believe, I must say, that all human beings were evil by nature";
 
 function App() {
+  const [quote, setQuote] = useState(
+    "She believed, and was entitled to believe, I must say, that all human beings were evil by nature"
+  );
   const [text, setText] = useState("");
   const [running, setRunning] = useState(false);
   const [wrongTypedChar, setWrongTypedChar] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    if (running) {
+      const quoteJSON = fetch("http://localhost:8080/quotes/random")
+        .then((res) => res.json())
+        .then((result) => setQuote(result.quote));
+      console.log(quoteJSON);
+    }
+  }, [running, setSeconds]);
   return (
     <div className="App">
       <Navbar />
