@@ -18,8 +18,9 @@
 .form>input{
     width: 100%;
 }
-.quote{
+.quote-input{
     height: 200px;
     width: 100%;
     padding: 10px;
+    resize: none;
 }

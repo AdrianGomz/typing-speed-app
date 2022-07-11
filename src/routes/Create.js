@@ -76,7 +76,7 @@ const Create = () => {
                 component="textarea"
                 rows="4"
                 name="quote"
-                className="quote"
+                className="quote-input"
               />
               <ErrorMessage name="quote" component="div" />
               <button type="submit">Submit</button>
