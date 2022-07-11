@@ -6,6 +6,9 @@
     color: aliceblue;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 .name{
     padding: 5px 0px;
