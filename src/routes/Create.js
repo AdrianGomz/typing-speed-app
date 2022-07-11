@@ -1,10 +1,90 @@
 import Navbar from "../components/Navbar";
-
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import "./Create.css";
 const Create = () => {
+  const getDate = () => {
+    let todayDate = new Date().toISOString().slice(0, 10);
+    return todayDate;
+  };
   return (
-    <Navbar>
-      <div>hello</div>
-    </Navbar>
+    <div>
+      <Navbar />
+      <div className="form-container">
+        <h1>Create a new Quote</h1>
+        <Formik
+          initialValues={{
+            title: "",
+            author: "",
+            quote: "",
+            publishedDate: getDate(),
+          }}
+          validationSchema={Yup.object({
+            title: Yup.string()
+              .test(
+                "len",
+                "Must be between 1 and 50 characters long",
+                (val) => {
+                  if (val) {
+                    return (
+                      val.toString().length <= 40 && val.toString().length >= 1
+                    );
+                  }
+                }
+              )
+              .required("Required"),
+            author: Yup.string()
+              .test(
+                "len",
+                "Must be between 1 and 50 characters long",
+                (val) => {
+                  if (val) {
+                    return (
+                      val.toString().length <= 40 && val.toString().length >= 1
+                    );
+                  }
+                }
+              )
+              .required("Required"),
+            quote: Yup.string()
+              .test(
+                "len",
+                "Must be between 150 and 800 characters long",
+                (val) => {
+                  if (val) {
+                    return (
+                      val.toString().length < 800 && val.toString().length > 150
+                    );
+                  }
+                }
+              )
+              .required("Required"),
+          })}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({ formik }) => (
+            <Form className="form">
+              <label>Title</label>
+              <Field name="title" />
+              <ErrorMessage name="title" component="div" />
+              <label>Author</label>
+              <Field name="author" />
+              <ErrorMessage name="author" component="div" />
+              <label>Quote</label>
+              <Field
+                type="textarea"
+                component="textarea"
+                rows="4"
+                name="quote"
+                className="quote"
+              />
+              <ErrorMessage name="quote" component="div" />
+              <button type="submit">Submit</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
   );
 };
 export default Create;

@@ -1,7 +1,7 @@
 .metrics {
     width: 200px;
     height: 12em;
-    border: solid;
+    border: solid #283739;
     border-radius: 10px;
 }
 .metrics-data{
