@@ -60,7 +60,19 @@ const Create = () => {
               )
               .required("Required"),
           })}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => {
+            console.log(JSON.stringify(values));
+
+            fetch("http://localhost:8080/quotes", {
+              method: "POST",
+              body: JSON.stringify(values),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((res) => res.json())
+              .catch((error) => console.error("Error:", error));
+          }}
         >
           {({ formik }) => (
             <Form className="form">
