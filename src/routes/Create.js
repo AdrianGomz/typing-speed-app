@@ -60,9 +60,7 @@ const Create = () => {
               )
               .required("Required"),
           })}
-          onSubmit={(values) => {
-            console.log(JSON.stringify(values));
-
+          onSubmit={(values, actions) => {
             fetch("http://localhost:8080/quotes", {
               method: "POST",
               body: JSON.stringify(values),
@@ -72,6 +70,12 @@ const Create = () => {
             })
               .then((res) => res.json())
               .catch((error) => console.error("Error:", error));
+            actions.resetForm({
+              title: "",
+              author: "",
+              quote: "",
+              publishedDate: getDate(),
+            });
           }}
         >
           {({ formik }) => (
