@@ -61,7 +61,7 @@ const Create = () => {
               .required("Required"),
           })}
           onSubmit={(values, actions) => {
-            fetch("http://localhost:8080/quotes", {
+            fetch("http://localhost:8080/", {
               method: "POST",
               body: JSON.stringify(values),
               headers: {
