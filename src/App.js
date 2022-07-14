@@ -13,7 +13,7 @@ function App() {
   const [title, setTitle] = useState(" ");
   useEffect(() => {
     if (running) {
-      const quoteJSON = fetch("http://localhost:8080/quotes/random")
+      const quoteJSON = fetch("https://typing-speed-api.herokuapp.com/random")
         .then((res) => res.json())
         .then((result) => {
           setQuote(result.quote);

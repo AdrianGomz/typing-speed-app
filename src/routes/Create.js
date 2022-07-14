@@ -61,7 +61,7 @@ const Create = () => {
               .required("Required"),
           })}
           onSubmit={(values, actions) => {
-            fetch("http://localhost:8080/", {
+            fetch("https://typing-speed-api.herokuapp.com/", {
               method: "POST",
               body: JSON.stringify(values),
               headers: {

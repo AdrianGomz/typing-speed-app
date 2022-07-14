@@ -6,7 +6,7 @@ import Quote from "../components/Quote";
 const Quotes = () => {
   const [quotes, setQuotes] = useState();
   useEffect(() => {
-    fetch("http://localhost:8080/all")
+    fetch("https://typing-speed-api.herokuapp.com/all")
       .then((res) => res.json())
       .then((res) => setQuotes(res));
   }, []);
